@@ -2,61 +2,54 @@ const initialState = {
   loading: false,
   error: null,
   success: null,
-  adsies: [],
+  comments: [],
   paginationLast: {},
   excelData: [],
-  ads: {},
-  //count
-  countLoading: false,
+  comment: {},
   totalCount: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CLEAR_ADS":
+    case "CLEAR_NEWS_COMMENT":
       return {
         ...state,
         error: null,
         success: null,
-        adsies: [],
-        ads: {},
-        excelData: [],
-        loading: false,
       };
 
-    case "LOAD_ADSIES_START":
+    case "LOAD_NEWS_COMMENT_START":
       return {
         ...state,
         loading: true,
         error: null,
         suceess: null,
-        adsies: [],
+        comments: [],
       };
 
-    case "LOAD_ADSIES_SUCCESS":
+    case "LOAD_NEWS_COMMENT_SUCCESS":
       return {
         ...state,
         loading: false,
-        adsies: action.adsies,
+        comments: action.loadNews,
       };
 
-    case "LOAD_ADSIES_ERROR":
+    case "LOAD_NEWS_COMMENT_ERROR":
       return {
         ...state,
         loading: false,
         success: null,
-        adsies: [],
+        comments: [],
         error: action.error,
       };
 
-    case "LOAD_ADS_PAGINATION":
+    case "LOAD_PAGINATION":
       return {
         ...state,
         paginationLast: action.pagination,
       };
-
     // EXCEL
-    case "GET_ADS_EXCELDATA_START":
+    case "GET_NEWS_COMMENT_EXCELDATA_START":
       return {
         ...state,
         loading: true,
@@ -65,16 +58,14 @@ const reducer = (state = initialState, action) => {
         excelData: [],
       };
 
-    case "GET_ADS_EXCELDATA_SUCCESS":
+    case "GET_NEWS_COMMENT_EXCELDATA_SUCCESS":
       return {
         ...state,
         loading: false,
         excelData: action.excel,
-        error: null,
-        success: null,
       };
 
-    case "GET_ADS_EXCELDATA_ERROR":
+    case "GET_NEWS_COMMENT_EXCELDATA_ERROR":
       return {
         ...state,
         loading: false,
@@ -84,7 +75,7 @@ const reducer = (state = initialState, action) => {
       };
 
     // SAVE
-    case "CREATE_ADS_INIT":
+    case "CREATE_NEWS_COMMENT_INIT":
       return {
         ...state,
         loading: false,
@@ -92,7 +83,7 @@ const reducer = (state = initialState, action) => {
         success: null,
       };
 
-    case "CREATE_ADS_START":
+    case "CREATE_NEWS_COMMENT_START":
       return {
         ...state,
         loading: true,
@@ -100,37 +91,36 @@ const reducer = (state = initialState, action) => {
         success: null,
       };
 
-    case "CREATE_ADS_SUCCESS":
+    case "CREATE_NEWS_COMMENT_SUCCESS":
       return {
         ...state,
         loading: false,
         error: null,
-        ads: action.ads,
+        comment: action.comment,
         success: "Амжилттай нэмэгдлээ",
       };
-    case "CREATE_ADS_ERROR":
+    case "CREATE_NEWS_COMMENT_ERROR":
       return {
         ...state,
         loading: false,
         error: action.error,
-        success: null,
       };
 
-    case "DELETE_MULT_ADS_START":
+    case "DELETE_MULT_NEWS_COMMENT_START":
       return {
         ...state,
         loading: true,
         success: null,
         error: null,
       };
-    case "DELETE_MULT_ADS_SUCCESS":
+    case "DELETE_MULT_NEWS_COMMENT_SUCCESS":
       return {
         ...state,
         loading: false,
         success: "Амжилттай устгагдлаа",
         error: null,
       };
-    case "DELETE_MULT_ADS_ERROR":
+    case "DELETE_MULT_NEWS_COMMENT_ERROR":
       return {
         ...state,
         loading: false,
@@ -139,77 +129,84 @@ const reducer = (state = initialState, action) => {
       };
 
     //GET
-    case "GET_ADS_INIT":
+    case "GET_NEWS_COMMENT_INIT":
       return {
         ...state,
         loading: false,
         success: null,
         error: null,
-        ads: {},
+        comment: {},
       };
 
-    case "GET_ADS_START":
+    case "GET_NEWS_COMMENT_START":
       return {
         ...state,
         loading: true,
-        ads: {},
+        comment: {},
         error: null,
       };
 
-    case "GET_ADS_SUCCESS":
+    case "GET_NEWS_COMMENT_SUCCESS":
       return {
         ...state,
         loading: false,
-        ads: action.ads,
+        comment: action.singleNews,
         error: null,
       };
 
-    case "GET_ADS_ERROR":
+    case "GET_NEWS_COMMENT_ERROR":
       return {
         ...state,
         loading: false,
-        ads: {},
+        comment: {},
         error: action.error,
       };
     //UPDATE
-    case "UPDATE_ADS_START":
+    case "UPDATE_NEWS_COMMENT_START":
       return {
         ...state,
         success: null,
         loading: true,
         error: null,
       };
-    case "UPDATE_ADS_SUCCESS":
+    case "UPDATE_NEWS_COMMENT_SUCCESS":
       return {
         ...state,
         loading: false,
         success: "Мэдээллийг амжилттай шинэчлэгдлээ",
         error: null,
       };
-    case "UPDATE_ADS_ERROR":
+    case "UPDATE_NEWS_COMMENT_ERROR":
       return {
         ...state,
         loading: false,
         success: null,
         error: action.error,
       };
+    case "UPDATE_END":
+      return {
+        ...state,
+        loading: false,
+        success: null,
+        error: null,
+      };
 
     // GET COUNT
-    case "GET_COUNT_ADS_START":
+    case "GET_COUNT_NEWSCOMMENT_START":
       return {
         ...state,
         countLoading: true,
         totalCount: null,
         error: null,
       };
-    case "GET_COUNT_ADS_SUCCESS":
+    case "GET_COUNT_NEWSCOMMENT_SUCCESS":
       return {
         ...state,
         coutLoading: false,
         totalCount: action.orderCount,
         error: null,
       };
-    case "GET_COUNT_ADS_ERROR":
+    case "GET_COUNT_NEWSCOMMENT_ERROR":
       return {
         ...state,
         countLoading: false,

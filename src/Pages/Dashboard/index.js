@@ -6,18 +6,17 @@ import PageTitle from "../../Components/PageTitle";
 
 // Actions
 import { getCountUser, getUsers } from "../../redux/actions/userActions";
-import { getCountService } from "../../redux/actions/serviceActions";
-import { getCountFaq } from "../../redux/actions/faqActions";
 import { getCountNews, loadNews } from "../../redux/actions/newsActions";
+import {
+  getCountNewsComment,
+  loadNewsComments,
+} from "../../redux/actions/newsCommentActions";
 
 const Dashboard = (props) => {
   const init = () => {
     props.getCountUser();
     props.getCountNews();
-    props.getCountFaq();
-    props.getCountService();
-    props.getUsers(`limit=6`);
-    props.loadNews(`limit=6`);
+    props.getCountNewsComment();
   };
   const clear = () => {};
   // UseEffect's
@@ -39,8 +38,8 @@ const Dashboard = (props) => {
               <div className="col-lg-3 col-6">
                 <div className="count-box bg-info">
                   <div className="inner">
-                    <h3>{props.faqTotal}</h3>
-                    <p>Нийт түгээмэл асуулт хариулт</p>
+                    <h3>{props.newsCommentTotal}</h3>
+                    <p>Нийт сэтгэгдэл</p>
                   </div>
                   <div className="icon">
                     <i className="fa fa-question"></i>
@@ -62,21 +61,10 @@ const Dashboard = (props) => {
                 <div className="count-box tile-aqua">
                   <div className="inner">
                     <h3>{props.newsTotal}</h3>
-                    <p>Нийт контент</p>
+                    <p>Нийт мэдээлэл</p>
                   </div>
                   <div className="icon">
                     <i className="fa fa-newspaper"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-3 col-6">
-                <div className="count-box tile-aqua">
-                  <div className="inner">
-                    <h3>{props.serviceTotal}</h3>
-                    <p>Нийт үйлчилгээ</p>
-                  </div>
-                  <div className="icon">
-                    <i className="fa fa-book"></i>
                   </div>
                 </div>
               </div>
@@ -90,15 +78,11 @@ const Dashboard = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    serviceTotal: state.serviceReducer.totalCount,
     userTotal: state.userReducer.totalCount,
     newsTotal: state.newsReducer.totalCount,
-    courseTotal: state.courseReducer.totalCount,
-    faqTotal: state.faqReducer.totalCount,
-    orders: state.orderReducer.orders,
+    newsCommentTotal: state.newsCommentReducer.totalCount,
     users: state.userReducer.users,
     news: state.newsReducer.allNews,
-    courses: state.courseReducer.courses,
   };
 };
 
@@ -106,8 +90,7 @@ const mapDispatchToProp = (dispatch) => {
   return {
     getCountUser: () => dispatch(getCountUser()),
     getCountNews: () => dispatch(getCountNews()),
-    getCountService: () => dispatch(getCountService()),
-    getCountFaq: () => dispatch(getCountFaq()),
+    getCountNewsComment: () => dispatch(getCountNewsComment()),
     loadNews: (query) => dispatch(loadNews(query)),
     getUsers: (query) => dispatch(getUsers(query)),
   };

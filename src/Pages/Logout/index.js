@@ -8,7 +8,7 @@ const Logout = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    removeCookie("zayatoken");
+    removeCookie("daynews");
     props.logout();
   }, []);
 

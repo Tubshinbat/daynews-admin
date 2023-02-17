@@ -360,7 +360,10 @@ const Add = (props) => {
                         alignleft aligncenter alignright alignjustify | \
                         bullist numlist outdent indent | removeformat | help | link  | quickbars | media | code | tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol",
                                 file_picker_types: "image",
+                                tinydrive_skin: "oxide-dark",
+                                // tinydrive_upload_path: "/assets/",
                                 tinydrive_token_provider: `${base.apiUrl}users/jwt`,
+
                                 automatic_uploads: false,
                                 file_picker_callback: function (
                                   cb,

@@ -19,14 +19,14 @@ import css from "./__.module.css";
 import * as actions from "../../redux/actions/loginActions";
 
 const Login = (props) => {
-  const [cookies, setCookie] = useCookies(["zayatoken"]);
+  const [cookies, setCookie] = useCookies(["daynews"]);
   // Init
   useEffect(() => {
-    if (cookies.zayatoken) document.location.href = base.baseUrl;
+    if (cookies.daynews) document.location.href = base.baseUrl;
   });
 
   useEffect(() => {
-    if (props.token) setCookie("zayatoken", props.token);
+    if (props.token) setCookie("daynews", props.token);
   }, [props.token]);
 
   // Ямар нэгэн алдаа эсвэл амжилттай үйлдэл хийгдвэл энд useEffect барьж аваад TOAST харуулна
@@ -54,7 +54,7 @@ const Login = (props) => {
       <div className={css.LoginPage}>
         <div className={css.LoginHeader}>
           <div className={css.Logo}>
-            <img src={`${base.baseUrl}assets/img/logo.png`} alt="logo" />
+            <h4 style={{ color: "#fff" }}> Daynews.mn </h4>
           </div>
           <p> Та өөрийнхөө админ нэвтрэх эрхээр орно уу</p>
         </div>

@@ -79,80 +79,13 @@ const Side = (props) => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/adsies"
+                to="/newscomments"
                 className="nav-link"
                 activeClassName="active"
               >
                 <i className="nav-icon fa fa-book" />
 
-                <p>Зарлал</p>
-              </NavLink>
-            </li>
-            {role != "operator" && (
-              <li className="nav-item">
-                <NavLink
-                  to="/platforms"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <i className="nav-icon fa fa-square" />
-                  <p>Платформууд</p>
-                </NavLink>
-              </li>
-            )}
-            {role != "operator" && (
-              <li className="nav-item">
-                <NavLink
-                  to="/services"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <i className="nav-icon far fa-plus-square" />
-                  <p>Үйлчилгээ</p>
-                </NavLink>
-              </li>
-            )}
-            {role != "operator" && (
-              <li className="nav-item">
-                <NavLink
-                  to="/costs"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <i className="nav-icon fa fa-file-invoice-dollar" />
-
-                  <p>Үнийн мэдээлэл</p>
-                </NavLink>
-              </li>
-            )}
-
-            <li className="nav-item">
-              <NavLink
-                to="/partners"
-                className="nav-link"
-                activeClassName="active"
-              >
-                <i className="nav-icon fa fa-building" />
-
-                <p>Хамтрагчид</p>
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink to="/faqs" className="nav-link" activeClassName="active">
-                <i className="nav-icon fa fa-comment" />
-                <p>Түгээмэл асуулт хариулт</p>
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink
-                to="/gallery"
-                className="nav-link"
-                activeClassName="active"
-              >
-                <i className="nav-icon fa fa-image" />
-                <p>Зургийн цомог</p>
+                <p>Мэдээний сэтгэгдэлүүд</p>
               </NavLink>
             </li>
 
@@ -180,30 +113,6 @@ const Side = (props) => {
                 >
                   <i className="nav-icon fa fa-cog" />
                   <p>Ерөнхий тохиргоо</p>
-                </NavLink>
-              </li>
-            )}
-            {role != "operator" && (
-              <li className="nav-item">
-                <NavLink
-                  to="/menus"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <i className="nav-icon fa fa-stream" />
-                  <p>Сайтын цэс</p>
-                </NavLink>
-              </li>
-            )}
-            {role != "operator" && (
-              <li className="nav-item">
-                <NavLink
-                  to="/pages"
-                  className="nav-link"
-                  activeClassName="active"
-                >
-                  <i className="nav-icon fa fa-file" />
-                  <p>Сайтын хуудас</p>
                 </NavLink>
               </li>
             )}
