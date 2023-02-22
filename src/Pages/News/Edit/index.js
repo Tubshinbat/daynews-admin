@@ -413,7 +413,7 @@ const Edit = (props) => {
                                   "insertdatetime media table paste code help wordcount image media  code  table  ",
                                 ],
                                 toolbar:
-                                  "insertfile image | undo redo | fontselect fontsizeselect formatselect blockquote  | bold italic backcolor | \
+                                  " image | undo redo | fontselect fontsizeselect formatselect blockquote  | bold italic backcolor | \
                         alignleft aligncenter alignright alignjustify | \
                         bullist numlist outdent indent | removeformat | help | link  | quickbars | media | code | tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol",
                                 tinydrive_token_provider: `${base.apiUrl}users/jwt`,

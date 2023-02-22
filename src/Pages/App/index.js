@@ -24,6 +24,9 @@ import NewsAdd from "../News/Add";
 import NewsEdit from "../News/Edit";
 import NewsCategories from "../News/News_categories";
 
+// news comments
+import NewsComments from "../Newscomment";
+
 //User
 import User from "../Users";
 import UserAdd from "../Users/Add";
@@ -75,6 +78,8 @@ function App(props) {
               <Route path={"/news/edit/:id"} component={NewsEdit} />
               <Route path="/news/add" component={NewsAdd} />
               <Route path="/news" exact component={News} />
+              // News comments
+              <Route path="/newscomments" exact component={NewsComments} />
               //users
               <Route path="/users/add" exact component={UserAdd} />
               <Route path="/users/edit/:id" exact component={UserEdit} />

@@ -258,14 +258,14 @@ const NewsCategories = (props) => {
                     >
                       <i className="fa fa-plus"></i> Цэс нэмэх
                     </button>
-                    {/* <button
+                    <button
                       className={`datatable-action add-bg ${
                         select && select.length > 0 && "active"
                       }`}
                       onClick={() => showModal("parent")}
                     >
                       <i className="fa fa-plus"></i> Дэд цэс нэмэх
-                    </button> */}
+                    </button>
                     <button
                       className={`datatable-action edit-bg ${
                         select && select.length > 0 && "active"

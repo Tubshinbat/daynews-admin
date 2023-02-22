@@ -190,6 +190,31 @@ const reducer = (state = initialState, action) => {
         success: null,
         error: null,
       };
+    // EXCEL
+    case "GET_NEWSCOMMENT_EXCELDATA_START":
+      return {
+        ...state,
+        loading: true,
+        success: null,
+        error: null,
+        excelData: [],
+      };
+
+    case "GET_NEWSCOMMENT_EXCELDATA_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        excelData: action.excel,
+      };
+
+    case "GET_NEWSCOMMENT_EXCELDATA_ERROR":
+      return {
+        ...state,
+        loading: false,
+        success: null,
+        error: action.error,
+        excelData: [],
+      };
 
     // GET COUNT
     case "GET_COUNT_NEWSCOMMENT_START":

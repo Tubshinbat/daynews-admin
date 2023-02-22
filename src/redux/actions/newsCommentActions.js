@@ -217,3 +217,40 @@ export const getCountNewsCommentError = (error) => {
     error,
   };
 };
+
+// Excel news
+export const getExcelData = (query) => {
+  return function (dispatch) {
+    dispatch(getExcelDataStart());
+    axios
+      .get("newscomments/excel?" + query)
+      .then((response) => {
+        const data = response.data.data;
+        dispatch(getExcelDataSuccess(data));
+      })
+      .catch((error) => {
+        let resError = errorBuild(error);
+        dispatch(getExcelDataError(resError));
+      });
+  };
+};
+
+const getExcelDataStart = () => {
+  return {
+    type: "GET_NEWSCOMMENT_EXCELDATA_START",
+  };
+};
+
+const getExcelDataSuccess = (data) => {
+  return {
+    type: "GET_NEWSCOMMENT_EXCELDATA_SUCCESS",
+    excel: data,
+  };
+};
+
+const getExcelDataError = (error) => {
+  return {
+    type: "GET_NEWSCOMMENT_EXCELDATA_ERROR",
+    error,
+  };
+};

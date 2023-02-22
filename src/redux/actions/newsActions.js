@@ -74,7 +74,7 @@ export const getExcelData = (query) => {
   return function (dispatch) {
     dispatch(getExcelDataStart());
     axios
-      .get("news/excel?" + query)
+      .get("newscomments/excel?" + query)
       .then((response) => {
         const data = response.data.data;
         dispatch(getExcelDataSuccess(data));
