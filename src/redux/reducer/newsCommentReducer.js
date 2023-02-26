@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        comments: action.loadNews,
+        comments: action.resultNewsComments,
       };
 
     case "LOAD_NEWS_COMMENT_ERROR":
@@ -43,7 +43,7 @@ const reducer = (state = initialState, action) => {
         error: action.error,
       };
 
-    case "LOAD_PAGINATION":
+    case "LOAD_NEWSCOMMENT_PAGINATION":
       return {
         ...state,
         paginationLast: action.pagination,
@@ -106,21 +106,21 @@ const reducer = (state = initialState, action) => {
         error: action.error,
       };
 
-    case "DELETE_MULT_NEWS_COMMENT_START":
+    case "DELETE_NEWS_COMMENT_START":
       return {
         ...state,
         loading: true,
         success: null,
         error: null,
       };
-    case "DELETE_MULT_NEWS_COMMENT_SUCCESS":
+    case "DELETE_NEWS_COMMENT_SUCCESS":
       return {
         ...state,
         loading: false,
         success: "Амжилттай устгагдлаа",
         error: null,
       };
-    case "DELETE_MULT_NEWS_COMMENT_ERROR":
+    case "DELETE_NEWS_COMMENT_ERROR":
       return {
         ...state,
         loading: false,

@@ -18,7 +18,6 @@ import Loader from "../../Components/Generals/Loader";
 
 // Actions
 import * as actions from "../../redux/actions/newsCommentActions";
-import { loadNews } from "../../redux/actions/newsActions";
 
 const NewsComment = (props) => {
   const searchInput = useRef(null);
@@ -152,7 +151,7 @@ const NewsComment = (props) => {
       ...getColumnSearchProps("news"),
       sorter: (a, b) => handleSort(),
       render: (text, record) => {
-        return record.news.name;
+        return record.news && record.news.name;
       },
     },
 
@@ -207,7 +206,7 @@ const NewsComment = (props) => {
   useEffect(() => {
     if (querys) {
       const query = queryBuild();
-      props.loadNews(query);
+      props.loadNewsComments(query);
     }
   }, [querys]);
 
@@ -229,21 +228,18 @@ const NewsComment = (props) => {
 
   // -- NEWS GET DONE EFFECT
   useEffect(() => {
-    if (props.allNews) {
+    if (props.comments) {
       const refData = [];
 
-      props.allNews.length > 0 &&
-        props.allNews.map((el) => {
+      props.comments.length > 0 &&
+        props.comments.map((el) => {
           const key = el._id;
           delete el._id;
           el.createAt = moment(el.createAt)
             .utcOffset("+0800")
             .format("YYYY-MM-DD HH:mm:ss");
-          el.updateAt = moment(el.updateAt)
-            .utcOffset("+0800")
-            .format("YYYY-MM-DD HH:mm:ss");
 
-          el.categories = el.news.name;
+          el.news = el.news;
 
           refData.push({
             dataIndex: key,
@@ -254,7 +250,7 @@ const NewsComment = (props) => {
       // console.log(refData);
       setData(refData);
     }
-  }, [props.allNews]);
+  }, [props.comments]);
 
   // Start moment
   useEffect(() => {
@@ -263,6 +259,7 @@ const NewsComment = (props) => {
       clear();
     };
   }, []);
+
   useEffect(() => {
     const total = props.pagination.total;
     const pageSize = props.pagination.limit;
@@ -272,11 +269,11 @@ const NewsComment = (props) => {
       pagination: { ...tbf.pagination, total, pageSize },
     }));
   }, [props.pagination]);
+
   // -- INIT
   const init = () => {
     const query = queryBuild();
     props.loadNewsComments(query);
-    props.loadNews();
   };
 
   const clear = () => {};
@@ -433,7 +430,7 @@ const NewsComment = (props) => {
       excelData = data.map((el) => {
         cloneColumns.map((col) => {
           if (col.key === "news" && col.status === true) {
-            el.news = el.news && el.news.name;
+            el.news = el.news;
           }
 
           if (col.key === "createAt" && col.status === true) {
@@ -628,21 +625,16 @@ const NewsComment = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.newsReducer.loading,
-    success: state.newsReducer.success,
-    error: state.newsReducer.error,
-    allNews: state.newsReducer.allNews,
-    pagination: state.newsReducer.paginationLast,
-    categories: state.newsCategoryReducer.categories,
-    // excelData: state.userReducer.excelData,
-    // excelLoading: state.userReducer.excelLoading,
-    news: state.newsReducer.news,
+    loading: state.newsCommentReducer.loading,
+    success: state.newsCommentReducer.success,
+    error: state.newsCommentReducer.error,
+    comments: state.newsCommentReducer.comments,
+    pagination: state.newsCommentReducer.paginationLast,
   };
 };
 
 const mapDispatchToProp = (dispatch) => {
   return {
-    loadNews: () => dispatch(loadNews()),
     loadNewsComments: (query) => dispatch(actions.loadNewsComments(query)),
     deleteNewsComment: (ids) => dispatch(actions.deleteNewsComment(ids)),
     getExcelData: (query) => dispatch(actions.getExcelData(query)),

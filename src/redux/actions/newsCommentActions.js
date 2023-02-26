@@ -35,11 +35,11 @@ export const editNewsComment = (index, data) => {
   };
 };
 
-export const deleteNewsComment = (id) => {
+export const deleteNewsComment = (ids) => {
   return function (dispatch) {
     dispatch(deleteNewsCommentStart());
     axios
-      .delete(`newscomments/${id}`)
+      .delete("newscomments/delete", { params: { id: ids } })
       .then((response) => {
         const deleteResult = response.data.data;
         dispatch(deleteNewsCommentSuccess(deleteResult));
@@ -108,14 +108,16 @@ export const getNewsCommentError = (error) => {
   };
 };
 
-export const loadNewsComments = () => {
+export const loadNewsComments = (query = "") => {
   return function (dispatch) {
     dispatch(loadNewsCommentStart());
     axios
-      .get(`newscomments`)
+      .get(`newscomments?${query}`)
       .then((response) => {
         const result = response.data.data;
+        const pagination = response.data.pagination;
         dispatch(loadNewsCommentSuccess(result));
+        dispatch(loadPagination(pagination));
       })
       .catch((error) => {
         const resError = errorBuild(error);
@@ -164,6 +166,13 @@ export const updateNewsComment = (id, data) => {
 export const updateNewsCommentStart = () => {
   return {
     type: "UPADTE_NEWS_COMMENT_START",
+  };
+};
+
+export const loadPagination = (pagination) => {
+  return {
+    type: "LOAD_NEWSCOMMENT_PAGINATION",
+    pagination,
   };
 };
 
