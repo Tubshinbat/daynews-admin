@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "barilga-cms-admin",
+      name: "daynews-cms-admin",
       script: "npm start",
       args: ["--color"],
       env: {
